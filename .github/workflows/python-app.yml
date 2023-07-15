@@ -2,6 +2,9 @@ name: Python
 
 on: workflow_dispatch
 
+
+
+
 jobs:
   build:
 
@@ -9,12 +12,18 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10"]
-
+        
+    
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+        - name: Make a File
+          run: echo ${{ matrix.python-version }} > python.txt
+        - name: Accidentally upload to the same artifact via multiple jobs
+          uses: actions/upload-artifact@v3
+          with:
+              name: artifact
+              path: ${{ github.workspace }}
+              
+        
+        
+
+    
