@@ -16,7 +16,7 @@ jobs:
     
     steps:
         - name: Make a File
-          run: echo Python Ver is - ${{ matrix.python-version }} > python [${{ matrix.python-version }}].txt
+          run: echo Python Ver is - ${{ matrix.python-version }} > python[${{ matrix.python-version }}].txt
         - name: Accidentally upload to the same artifact via multiple jobs
           uses: actions/upload-artifact@v3
           with:
